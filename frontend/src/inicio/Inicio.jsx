@@ -3,6 +3,14 @@ import { Tabla } from './Componentes/Tabla';
 
 export const Inicio = () => {
     const [data, setData] = useState([]);
+    const [actrange, setActrange] = useState("");
+
+    const rango = () => {
+        google.script.run
+            .withSuccessHandler((e) => setActrange(e))
+            .buscarrango()
+    }
+
 
     const datafind = (e) => {
         setData(e);
@@ -16,11 +24,12 @@ export const Inicio = () => {
 
     useEffect(() => {
         buscardata();
+        rango();
     }, [])
 
     return (
         <div>
-            <Tabla props={{ data }} />
+            <Tabla props={{ data, actrange }} />
         </div>
     )
 }

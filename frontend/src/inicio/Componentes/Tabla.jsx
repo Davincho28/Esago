@@ -3,12 +3,14 @@ import { Link } from 'react-router-dom';
 
 export const Tabla = ({ props }) => {
     const data = props.data;
+    const rango = props.actrange
     const aprobacion = (e) => {
         e.preventDefault();
         console.log(e.target);
     }
     return (
         <div>
+            <h2>{rango}</h2>
             <h2>Solicitudes:</h2>
             <table className="table">
                 <thead>
@@ -23,20 +25,22 @@ export const Tabla = ({ props }) => {
                 <tbody>
                     {data.length > 0 &&
                         data.map((fila) => {
-                            return (
-                                <tr key={fila.NumDocumen}>
-                                    <td>{fila.Nombre}</td>
-                                    <td>{fila.TipDocumen}</td>
-                                    <td>{fila.NumDocumen}</td>
-                                    <td>{fila.DatoGestion}</td>
-                                    {
-                                        fila.Aprobado == "" &&
-                                        <td>
-                                            <Link to={"/aprobar/" + fila.NumDocumen}><button className='btn btn-success'>Aprobar</button></Link>
-                                        </td>
-                                    }
-                                </tr>
-                            )
+                            if (rango == fila.DatoGestion) {
+                                return (
+                                    <tr key={fila.NumDocumen}>
+                                        <td>{fila.Nombre}</td>
+                                        <td>{fila.TipDocumen}</td>
+                                        <td>{fila.NumDocumen}</td>
+                                        <td>{fila.DatoGestion}</td>
+                                        {
+                                            fila.Aprobado == "" &&
+                                            <td>
+                                                <Link to={"/aprobar/" + fila.NumDocumen}><button className='btn btn-success'>Aprobar</button></Link>
+                                            </td>
+                                        }
+                                    </tr>
+                                )
+                            }
                         })
                     }
                 </tbody>

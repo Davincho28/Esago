@@ -9,6 +9,7 @@ export const Aprobar = () => {
     const [cc, setCc] = useState("");
     const [aprobacion, setAprobacion] = useState("");
 
+
     const datafind = (data) => {
         const array = data.split(",")
         setNombre(array[0]);
@@ -48,12 +49,20 @@ export const Aprobar = () => {
 
     return (
         <div>
-            <h2>{aprobacion}</h2>
-            <h2>Aprobar</h2>
-            <h3>Hola estas viendo el perfil de: {nombre} </h3>
-            <h3>El correo es: {correo}</h3>
-            <h3>Tiene {tipcc} y el numero es {cc}</h3>
-            <hr />
+            <div>
+                <br />
+                <Link to="/"><button className='btn btn-success'>Ir a inicio</button></Link>
+            </div>
+
+            <div className='text-center'>
+                <h2>{aprobacion}</h2>
+                <h2>Aprobar</h2>
+                <h3>Hola estas viendo el perfil de: {nombre} </h3>
+                <h3>El correo es: {correo}</h3>
+                <h3>Tiene {tipcc} y el numero es {cc}</h3>
+                <hr />
+            </div>
+
             <div className='col-auto text-center'>
                 <form onSubmit={enviarresp}>
                     <div className='container col-md-12'>
@@ -73,8 +82,6 @@ export const Aprobar = () => {
                     </div>
                 </form>
             </div>
-
-            <Link to="/"><button className='btn btn-success'>Ir a inicio</button></Link>
         </div>
     )
 }

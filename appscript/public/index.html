@@ -27176,7 +27176,7 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","./inicio/Inicio":"1RlOB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./inicio/Aprobar":"gjknG"}],"9xmpe":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","./inicio/Aprobar":"gjknG","./inicio/Inicio":"1RlOB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"9xmpe":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "AbortedDeferredError", ()=>(0, _reactRouter.AbortedDeferredError));
@@ -31388,60 +31388,273 @@ exports.export = function(dest, destName, get) {
     });
 };
 
-},{}],"1RlOB":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$610a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{}],"gjknG":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$34c5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$610a.prelude(module);
+$parcel$ReactRefreshHelpers$34c5.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Inicio", ()=>Inicio);
+parcelHelpers.export(exports, "Aprobar", ()=>Aprobar);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _tabla = require("./Componentes/Tabla");
+var _reactRouterDom = require("react-router-dom");
 var _s = $RefreshSig$();
-const Inicio = ()=>{
+const Aprobar = ()=>{
     _s();
-    const [data, setData] = (0, _react.useState)([]);
-    const datafind = (e)=>{
-        setData(e);
+    const { numident  } = (0, _reactRouterDom.useParams)();
+    const [nombre, setNombre] = (0, _react.useState)("");
+    const [correo, setCorreo] = (0, _react.useState)("");
+    const [tipcc, setTipcc] = (0, _react.useState)("");
+    const [cc, setCc] = (0, _react.useState)("");
+    const [aprobacion, setAprobacion] = (0, _react.useState)("");
+    const datafind = (data)=>{
+        const array = data.split(",");
+        setNombre(array[0]);
+        setCorreo(array[1]);
+        setTipcc(array[3]);
+        setCc(array[4]);
     };
-    const buscardata = ()=>{
-        google.script.run.withSuccessHandler(datafind).DatosForm();
+    const enviarresp = (e)=>{
+        e.preventDefault();
+        const formulario = e.target;
+        const select = formulario.selector;
+        const descripcion = formulario.description.value;
+        const boton = formulario.enviar;
+        boton.disabled = true;
+        select.disabled = true;
+        google.script.run.withSuccessHandler(redirecciona).aprobando(select.value, descripcion, numident);
+    };
+    const redirecciona = (message)=>{
+        alert(message);
+    };
+    const buscainfo = ()=>{
+        google.script.run.withSuccessHandler(datafind).buscarnumiden(numident);
     };
     (0, _react.useEffect)(()=>{
-        buscardata();
+        buscainfo();
     }, []);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tabla.Tabla), {
-            props: {
-                data
-            }
-        }, void 0, false, {
-            fileName: "src/inicio/Inicio.jsx",
-            lineNumber: 23,
-            columnNumber: 13
-        }, undefined)
-    }, void 0, false, {
-        fileName: "src/inicio/Inicio.jsx",
-        lineNumber: 22,
+        children: [
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                        fileName: "src/inicio/Aprobar.jsx",
+                        lineNumber: 53,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
+                        to: "/",
+                        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
+                            className: "btn btn-success",
+                            children: "Ir a inicio"
+                        }, void 0, false, {
+                            fileName: "src/inicio/Aprobar.jsx",
+                            lineNumber: 54,
+                            columnNumber: 30
+                        }, undefined)
+                    }, void 0, false, {
+                        fileName: "src/inicio/Aprobar.jsx",
+                        lineNumber: 54,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/inicio/Aprobar.jsx",
+                lineNumber: 52,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "text-center",
+                children: [
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: aprobacion
+                    }, void 0, false, {
+                        fileName: "src/inicio/Aprobar.jsx",
+                        lineNumber: 58,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                        children: "Aprobar"
+                    }, void 0, false, {
+                        fileName: "src/inicio/Aprobar.jsx",
+                        lineNumber: 59,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                        children: [
+                            "Hola estas viendo el perfil de: ",
+                            nombre,
+                            " "
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/inicio/Aprobar.jsx",
+                        lineNumber: 60,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                        children: [
+                            "El correo es: ",
+                            correo
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/inicio/Aprobar.jsx",
+                        lineNumber: 61,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
+                        children: [
+                            "Tiene ",
+                            tipcc,
+                            " y el numero es ",
+                            cc
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/inicio/Aprobar.jsx",
+                        lineNumber: 62,
+                        columnNumber: 17
+                    }, undefined),
+                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
+                        fileName: "src/inicio/Aprobar.jsx",
+                        lineNumber: 63,
+                        columnNumber: 17
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/inicio/Aprobar.jsx",
+                lineNumber: 57,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                className: "col-auto text-center",
+                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
+                    onSubmit: enviarresp,
+                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                        className: "container col-md-12",
+                        children: [
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                                children: "Deseas Aprobar esta solicitud?"
+                            }, void 0, false, {
+                                fileName: "src/inicio/Aprobar.jsx",
+                                lineNumber: 69,
+                                columnNumber: 25
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "col-md-12",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
+                                        children: "Descripcion:"
+                                    }, void 0, false, {
+                                        fileName: "src/inicio/Aprobar.jsx",
+                                        lineNumber: 71,
+                                        columnNumber: 29
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
+                                        fileName: "src/inicio/Aprobar.jsx",
+                                        lineNumber: 72,
+                                        columnNumber: 29
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("textarea", {
+                                        cols: "30",
+                                        rows: "5",
+                                        required: true,
+                                        id: "description"
+                                    }, void 0, false, {
+                                        fileName: "src/inicio/Aprobar.jsx",
+                                        lineNumber: 73,
+                                        columnNumber: 29
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/inicio/Aprobar.jsx",
+                                lineNumber: 70,
+                                columnNumber: 25
+                            }, undefined),
+                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+                                className: "col-md-12",
+                                children: [
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("select", {
+                                        className: "form-select",
+                                        id: "selector",
+                                        children: [
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
+                                                value: "SI",
+                                                children: "SI"
+                                            }, void 0, false, {
+                                                fileName: "src/inicio/Aprobar.jsx",
+                                                lineNumber: 77,
+                                                columnNumber: 33
+                                            }, undefined),
+                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
+                                                value: "NO",
+                                                children: "NO"
+                                            }, void 0, false, {
+                                                fileName: "src/inicio/Aprobar.jsx",
+                                                lineNumber: 78,
+                                                columnNumber: 33
+                                            }, undefined)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/inicio/Aprobar.jsx",
+                                        lineNumber: 76,
+                                        columnNumber: 29
+                                    }, undefined),
+                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
+                                        type: "submit",
+                                        value: "Enviar",
+                                        id: "enviar"
+                                    }, void 0, false, {
+                                        fileName: "src/inicio/Aprobar.jsx",
+                                        lineNumber: 80,
+                                        columnNumber: 29
+                                    }, undefined)
+                                ]
+                            }, void 0, true, {
+                                fileName: "src/inicio/Aprobar.jsx",
+                                lineNumber: 75,
+                                columnNumber: 25
+                            }, undefined)
+                        ]
+                    }, void 0, true, {
+                        fileName: "src/inicio/Aprobar.jsx",
+                        lineNumber: 68,
+                        columnNumber: 21
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/inicio/Aprobar.jsx",
+                    lineNumber: 67,
+                    columnNumber: 17
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/inicio/Aprobar.jsx",
+                lineNumber: 66,
+                columnNumber: 13
+            }, undefined)
+        ]
+    }, void 0, true, {
+        fileName: "src/inicio/Aprobar.jsx",
+        lineNumber: 51,
         columnNumber: 9
     }, undefined);
 };
-_s(Inicio, "IEMTtLVFIuToo7X/raQbJAxzNQU=");
-_c = Inicio;
+_s(Aprobar, "Z9MXM3+3hKip/mP1vXYNMRj+33w=", false, function() {
+    return [
+        (0, _reactRouterDom.useParams)
+    ];
+});
+_c = Aprobar;
 var _c;
-$RefreshReg$(_c, "Inicio");
+$RefreshReg$(_c, "Aprobar");
 
-  $parcel$ReactRefreshHelpers$610a.postlude(module);
+  $parcel$ReactRefreshHelpers$34c5.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","./Componentes/Tabla":"jiY0o"}],"km3Ru":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"km3Ru":[function(require,module,exports) {
 "use strict";
 var Refresh = require("react-refresh/runtime");
 function debounce(func, delay) {
@@ -32025,7 +32238,66 @@ module.exports = require("./cjs/react-refresh-runtime.development.js");
     exports.setSignature = setSignature;
 })();
 
-},{}],"jiY0o":[function(require,module,exports) {
+},{}],"1RlOB":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$610a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$610a.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "Inicio", ()=>Inicio);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _tabla = require("./Componentes/Tabla");
+var _s = $RefreshSig$();
+const Inicio = ()=>{
+    _s();
+    const [data, setData] = (0, _react.useState)([]);
+    const [actrange, setActrange] = (0, _react.useState)("");
+    const rango = ()=>{
+        google.script.run.withSuccessHandler((e)=>setActrange(e)).buscarrango();
+    };
+    const datafind = (e)=>{
+        setData(e);
+    };
+    const buscardata = ()=>{
+        google.script.run.withSuccessHandler(datafind).DatosForm();
+    };
+    (0, _react.useEffect)(()=>{
+        buscardata();
+        rango();
+    }, []);
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _tabla.Tabla), {
+            props: {
+                data,
+                actrange
+            }
+        }, void 0, false, {
+            fileName: "src/inicio/Inicio.jsx",
+            lineNumber: 32,
+            columnNumber: 13
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/inicio/Inicio.jsx",
+        lineNumber: 31,
+        columnNumber: 9
+    }, undefined);
+};
+_s(Inicio, "7Sn48fhi9Qtp2pa82+hLZd/vTxo=");
+_c = Inicio;
+var _c;
+$RefreshReg$(_c, "Inicio");
+
+  $parcel$ReactRefreshHelpers$610a.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./Componentes/Tabla":"jiY0o","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"jiY0o":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$7164 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -32041,6 +32313,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
 const Tabla = ({ props  })=>{
     const data = props.data;
+    const rango = props.actrange;
     const aprobacion = (e)=>{
         e.preventDefault();
         console.log(e.target);
@@ -32048,10 +32321,17 @@ const Tabla = ({ props  })=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
+                children: rango
+            }, void 0, false, {
+                fileName: "src/inicio/Componentes/Tabla.jsx",
+                lineNumber: 13,
+                columnNumber: 13
+            }, undefined),
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
                 children: "Solicitudes:"
             }, void 0, false, {
                 fileName: "src/inicio/Componentes/Tabla.jsx",
-                lineNumber: 12,
+                lineNumber: 14,
                 columnNumber: 13
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("table", {
@@ -32065,7 +32345,7 @@ const Tabla = ({ props  })=>{
                                     children: "Nombre"
                                 }, void 0, false, {
                                     fileName: "src/inicio/Componentes/Tabla.jsx",
-                                    lineNumber: 16,
+                                    lineNumber: 18,
                                     columnNumber: 25
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("th", {
@@ -32073,7 +32353,7 @@ const Tabla = ({ props  })=>{
                                     children: "Tipo Documento"
                                 }, void 0, false, {
                                     fileName: "src/inicio/Componentes/Tabla.jsx",
-                                    lineNumber: 17,
+                                    lineNumber: 19,
                                     columnNumber: 25
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("th", {
@@ -32081,7 +32361,7 @@ const Tabla = ({ props  })=>{
                                     children: "Numero Documento"
                                 }, void 0, false, {
                                     fileName: "src/inicio/Componentes/Tabla.jsx",
-                                    lineNumber: 18,
+                                    lineNumber: 20,
                                     columnNumber: 25
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("th", {
@@ -32089,7 +32369,7 @@ const Tabla = ({ props  })=>{
                                     children: "Area"
                                 }, void 0, false, {
                                     fileName: "src/inicio/Componentes/Tabla.jsx",
-                                    lineNumber: 19,
+                                    lineNumber: 21,
                                     columnNumber: 25
                                 }, undefined),
                                 /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("th", {
@@ -32097,51 +32377,51 @@ const Tabla = ({ props  })=>{
                                     children: "Aprobado"
                                 }, void 0, false, {
                                     fileName: "src/inicio/Componentes/Tabla.jsx",
-                                    lineNumber: 20,
+                                    lineNumber: 22,
                                     columnNumber: 25
                                 }, undefined)
                             ]
                         }, void 0, true, {
                             fileName: "src/inicio/Componentes/Tabla.jsx",
-                            lineNumber: 15,
+                            lineNumber: 17,
                             columnNumber: 21
                         }, undefined)
                     }, void 0, false, {
                         fileName: "src/inicio/Componentes/Tabla.jsx",
-                        lineNumber: 14,
+                        lineNumber: 16,
                         columnNumber: 17
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("tbody", {
                         children: data.length > 0 && data.map((fila)=>{
-                            return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("tr", {
+                            if (rango == fila.DatoGestion) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("tr", {
                                 children: [
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("td", {
                                         children: fila.Nombre
                                     }, void 0, false, {
                                         fileName: "src/inicio/Componentes/Tabla.jsx",
-                                        lineNumber: 28,
-                                        columnNumber: 37
+                                        lineNumber: 31,
+                                        columnNumber: 41
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("td", {
                                         children: fila.TipDocumen
                                     }, void 0, false, {
                                         fileName: "src/inicio/Componentes/Tabla.jsx",
-                                        lineNumber: 29,
-                                        columnNumber: 37
+                                        lineNumber: 32,
+                                        columnNumber: 41
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("td", {
                                         children: fila.NumDocumen
                                     }, void 0, false, {
                                         fileName: "src/inicio/Componentes/Tabla.jsx",
-                                        lineNumber: 30,
-                                        columnNumber: 37
+                                        lineNumber: 33,
+                                        columnNumber: 41
                                     }, undefined),
                                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("td", {
                                         children: fila.DatoGestion
                                     }, void 0, false, {
                                         fileName: "src/inicio/Componentes/Tabla.jsx",
-                                        lineNumber: 31,
-                                        columnNumber: 37
+                                        lineNumber: 34,
+                                        columnNumber: 41
                                     }, undefined),
                                     fila.Aprobado == "" && /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("td", {
                                         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
@@ -32151,41 +32431,41 @@ const Tabla = ({ props  })=>{
                                                 children: "Aprobar"
                                             }, void 0, false, {
                                                 fileName: "src/inicio/Componentes/Tabla.jsx",
-                                                lineNumber: 35,
-                                                columnNumber: 86
+                                                lineNumber: 38,
+                                                columnNumber: 90
                                             }, undefined)
                                         }, void 0, false, {
                                             fileName: "src/inicio/Componentes/Tabla.jsx",
-                                            lineNumber: 35,
-                                            columnNumber: 45
+                                            lineNumber: 38,
+                                            columnNumber: 49
                                         }, undefined)
                                     }, void 0, false, {
                                         fileName: "src/inicio/Componentes/Tabla.jsx",
-                                        lineNumber: 34,
-                                        columnNumber: 41
+                                        lineNumber: 37,
+                                        columnNumber: 45
                                     }, undefined)
                                 ]
                             }, fila.NumDocumen, true, {
                                 fileName: "src/inicio/Componentes/Tabla.jsx",
-                                lineNumber: 27,
-                                columnNumber: 33
+                                lineNumber: 30,
+                                columnNumber: 37
                             }, undefined);
                         })
                     }, void 0, false, {
                         fileName: "src/inicio/Componentes/Tabla.jsx",
-                        lineNumber: 23,
+                        lineNumber: 25,
                         columnNumber: 17
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/inicio/Componentes/Tabla.jsx",
-                lineNumber: 13,
+                lineNumber: 15,
                 columnNumber: 13
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/inicio/Componentes/Tabla.jsx",
-        lineNumber: 11,
+        lineNumber: 12,
         columnNumber: 9
     }, undefined);
 };
@@ -32198,251 +32478,7 @@ $RefreshReg$(_c, "Tabla");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"9xmpe"}],"gjknG":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$34c5 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$34c5.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Aprobar", ()=>Aprobar);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactRouterDom = require("react-router-dom");
-var _s = $RefreshSig$();
-const Aprobar = ()=>{
-    _s();
-    const { numident  } = (0, _reactRouterDom.useParams)();
-    const [nombre, setNombre] = (0, _react.useState)("");
-    const [correo, setCorreo] = (0, _react.useState)("");
-    const [tipcc, setTipcc] = (0, _react.useState)("");
-    const [cc, setCc] = (0, _react.useState)("");
-    const [aprobacion, setAprobacion] = (0, _react.useState)("");
-    const datafind = (data)=>{
-        const array = data.split(",");
-        setNombre(array[0]);
-        setCorreo(array[1]);
-        setTipcc(array[3]);
-        setCc(array[4]);
-    };
-    const enviarresp = (e)=>{
-        e.preventDefault();
-        const formulario = e.target;
-        const select = formulario.selector;
-        const descripcion = formulario.description.value;
-        const boton = formulario.enviar;
-        boton.disabled = true;
-        select.disabled = true;
-        google.script.run.withSuccessHandler(redirecciona).aprobando(select.value, descripcion, numident);
-    };
-    const redirecciona = (message)=>{
-        alert(message);
-    };
-    const buscainfo = ()=>{
-        google.script.run.withSuccessHandler(datafind).buscarnumiden(numident);
-    };
-    (0, _react.useEffect)(()=>{
-        buscainfo();
-    }, []);
-    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                children: aprobacion
-            }, void 0, false, {
-                fileName: "src/inicio/Aprobar.jsx",
-                lineNumber: 51,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                children: "Aprobar"
-            }, void 0, false, {
-                fileName: "src/inicio/Aprobar.jsx",
-                lineNumber: 52,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
-                children: [
-                    "Hola estas viendo el perfil de: ",
-                    nombre,
-                    " "
-                ]
-            }, void 0, true, {
-                fileName: "src/inicio/Aprobar.jsx",
-                lineNumber: 53,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
-                children: [
-                    "El correo es: ",
-                    correo
-                ]
-            }, void 0, true, {
-                fileName: "src/inicio/Aprobar.jsx",
-                lineNumber: 54,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h3", {
-                children: [
-                    "Tiene ",
-                    tipcc,
-                    " y el numero es ",
-                    cc
-                ]
-            }, void 0, true, {
-                fileName: "src/inicio/Aprobar.jsx",
-                lineNumber: 55,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("hr", {}, void 0, false, {
-                fileName: "src/inicio/Aprobar.jsx",
-                lineNumber: 56,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                className: "col-auto text-center",
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("form", {
-                    onSubmit: enviarresp,
-                    children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                        className: "container col-md-12",
-                        children: [
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h2", {
-                                children: "Deseas Aprobar esta solicitud?"
-                            }, void 0, false, {
-                                fileName: "src/inicio/Aprobar.jsx",
-                                lineNumber: 60,
-                                columnNumber: 25
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: "col-md-12",
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("label", {
-                                        children: "Descripcion:"
-                                    }, void 0, false, {
-                                        fileName: "src/inicio/Aprobar.jsx",
-                                        lineNumber: 62,
-                                        columnNumber: 29
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("br", {}, void 0, false, {
-                                        fileName: "src/inicio/Aprobar.jsx",
-                                        lineNumber: 63,
-                                        columnNumber: 29
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("textarea", {
-                                        cols: "30",
-                                        rows: "5",
-                                        required: true,
-                                        id: "description"
-                                    }, void 0, false, {
-                                        fileName: "src/inicio/Aprobar.jsx",
-                                        lineNumber: 64,
-                                        columnNumber: 29
-                                    }, undefined)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/inicio/Aprobar.jsx",
-                                lineNumber: 61,
-                                columnNumber: 25
-                            }, undefined),
-                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-                                className: "col-md-12",
-                                children: [
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("select", {
-                                        className: "form-select",
-                                        id: "selector",
-                                        children: [
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
-                                                value: "SI",
-                                                children: "SI"
-                                            }, void 0, false, {
-                                                fileName: "src/inicio/Aprobar.jsx",
-                                                lineNumber: 68,
-                                                columnNumber: 33
-                                            }, undefined),
-                                            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("option", {
-                                                value: "NO",
-                                                children: "NO"
-                                            }, void 0, false, {
-                                                fileName: "src/inicio/Aprobar.jsx",
-                                                lineNumber: 69,
-                                                columnNumber: 33
-                                            }, undefined)
-                                        ]
-                                    }, void 0, true, {
-                                        fileName: "src/inicio/Aprobar.jsx",
-                                        lineNumber: 67,
-                                        columnNumber: 29
-                                    }, undefined),
-                                    /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("input", {
-                                        type: "submit",
-                                        value: "Enviar",
-                                        id: "enviar"
-                                    }, void 0, false, {
-                                        fileName: "src/inicio/Aprobar.jsx",
-                                        lineNumber: 71,
-                                        columnNumber: 29
-                                    }, undefined)
-                                ]
-                            }, void 0, true, {
-                                fileName: "src/inicio/Aprobar.jsx",
-                                lineNumber: 66,
-                                columnNumber: 25
-                            }, undefined)
-                        ]
-                    }, void 0, true, {
-                        fileName: "src/inicio/Aprobar.jsx",
-                        lineNumber: 59,
-                        columnNumber: 21
-                    }, undefined)
-                }, void 0, false, {
-                    fileName: "src/inicio/Aprobar.jsx",
-                    lineNumber: 58,
-                    columnNumber: 17
-                }, undefined)
-            }, void 0, false, {
-                fileName: "src/inicio/Aprobar.jsx",
-                lineNumber: 57,
-                columnNumber: 13
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Link), {
-                to: "/",
-                children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
-                    className: "btn btn-success",
-                    children: "Ir a inicio"
-                }, void 0, false, {
-                    fileName: "src/inicio/Aprobar.jsx",
-                    lineNumber: 76,
-                    columnNumber: 26
-                }, undefined)
-            }, void 0, false, {
-                fileName: "src/inicio/Aprobar.jsx",
-                lineNumber: 76,
-                columnNumber: 13
-            }, undefined)
-        ]
-    }, void 0, true, {
-        fileName: "src/inicio/Aprobar.jsx",
-        lineNumber: 50,
-        columnNumber: 9
-    }, undefined);
-};
-_s(Aprobar, "Z9MXM3+3hKip/mP1vXYNMRj+33w=", false, function() {
-    return [
-        (0, _reactRouterDom.useParams)
-    ];
-});
-_c = Aprobar;
-var _c;
-$RefreshReg$(_c, "Aprobar");
-
-  $parcel$ReactRefreshHelpers$34c5.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"9xmpe"}]},["1xC6H","7WKuv","6IUbS"], "6IUbS", "parcelRequire10c2")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}]},["1xC6H","7WKuv","6IUbS"], "6IUbS", "parcelRequire10c2")
 
 </script>
 </html>

@@ -8,3 +8,8 @@ function buscarnumiden(ident) {
   });
   return array.toString();
 }
+
+function buscarrango() {
+  const found = dataAdmin.find((element) => user == element[1]);
+  return found[0];
+}
